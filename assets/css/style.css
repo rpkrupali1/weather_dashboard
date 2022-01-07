@@ -15,3 +15,7 @@
 .bg-dark {
     background-color: #293933;
 }
+
+img {
+    border-style: none;
+}
