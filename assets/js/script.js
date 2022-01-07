@@ -8,6 +8,7 @@ var dailyForecastEl = document.querySelector("#dailyforecast");
 var formEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#cityInput");
 var todaysforcastEl = document.querySelector("#todaysforcast");
+var historyEl = document.querySelector("#history");
 
 var getCurrentweather = function(city){
     var cityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=d1f59f196e4e712a80edcc818a784ec2";
@@ -85,10 +86,6 @@ var display5dayForecast = function(data){
     }
 }
 
-var loadHistory = function(){
-
-}
-
 var saveCity = function(city){
     var cityHistory = JSON.parse(window.localStorage.getItem("cities")) || [];
     var newCity = true;
@@ -104,6 +101,18 @@ var saveCity = function(city){
     if(newCity){
         cityHistory.push(city);
         localStorage.setItem("cities",JSON.stringify(cityHistory));
+    }
+}
+
+var loadHistory = function(){
+    var cityHistory = JSON.parse(window.localStorage.getItem("cities"));
+    if(cityHistory){
+        for (let i = 0; i < cityHistory.length; i++) {
+            var cityHistoryEl  = document.createElement("button");
+            cityHistoryEl.textContent = cityHistory[i];
+            cityHistoryEl.classList = "bg-secondary.bg-gradient rounded col-12 m-1";
+            historyEl.appendChild(cityHistoryEl);
+        }
     }
 }
 
@@ -125,5 +134,7 @@ var formSubmitHandler = function(event){
     else
         alert("Please enter city name");
 }
+
+loadHistory();
 
 formEl.addEventListener("submit",formSubmitHandler)
