@@ -9,7 +9,7 @@ var cityInputEl = document.querySelector("#cityInput");
 var todaysforcastEl = document.querySelector("#todaysforcast");
 var historyButtonsEl = document.querySelector("#history");
 var currentWeatherIconEl = document.querySelector("#current-weather-icon");
-//var dailyforecastHeaderEl = document.querySelector("#5dayforecast-header");
+var forecastHeaderEl = document.querySelector("#forecast-header");
 
 var getCurrentweather = function(city){
     var cityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=d1f59f196e4e712a80edcc818a784ec2";
@@ -38,6 +38,8 @@ var getWeatherData = function(city,lat,lon){
     fetch(oneCallUrl).then(function(response){
         if(response.ok){
             response.json().then(function(data){ 
+                todaysforcastEl.classList = "border border-secondary mb-4 px-2 row";
+                //class="border border-secondary mb-4 px-2 row"
 
                 var date = moment().format("MM/DD/YYYY");
                 cityEl.textContent = city + " (" + date + ")";
@@ -69,7 +71,7 @@ var getWeatherData = function(city,lat,lon){
 }
 
 var display5dayForecast = function(data){
-    //dailyforecastHeaderEl.textContent = "5-day forecast:";
+    forecastHeaderEl.textContent = "5-day forecast:";
     var forecastRowEl = document.createElement("div");
     forecastRowEl.classList = "row";
     
