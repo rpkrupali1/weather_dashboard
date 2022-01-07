@@ -8,12 +8,12 @@ var dailyForecastEl = document.querySelector("#dailyforecast");
 var formEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#cityInput");
 var todaysforcastEl = document.querySelector("#todaysforcast");
-var cityHistory = {};
 
 var getCurrentweather = function(city){
     var cityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=d1f59f196e4e712a80edcc818a784ec2";
     fetch(cityUrl).then(function(response){
         if(response.ok){
+            saveCity(city);
             var date = moment().format("MM/DD/YYYY");
             cityEl.textContent = city + " (" + date + ")";
             response.json().then(function(data){                
@@ -86,12 +86,30 @@ var display5dayForecast = function(data){
 }
 
 var loadHistory = function(){
-    
+
 }
+
+var saveCity = function(city){
+    var cityHistory = JSON.parse(window.localStorage.getItem("cities")) || [];
+    var newCity = true;
+    if(cityHistory){
+        for (let i = 0; i < cityHistory.length; i++) {
+            if(cityHistory[i]===city){
+                newCity = false;
+                break;
+            }           
+        }
+    }
+
+    if(newCity){
+        cityHistory.push(city);
+        localStorage.setItem("cities",JSON.stringify(cityHistory));
+    }
+}
+
 
 var formSubmitHandler = function(event){
     event.preventDefault();
-    loadHistory();
     dailyForecastEl.textContent = "";
     cityEl.textContent = "";
     tempEl.textContent = "";
@@ -102,7 +120,7 @@ var formSubmitHandler = function(event){
     var city = cityInputEl.value.trim();
     if(city){
         getCurrentweather(city);
-        city.value = "";
+        cityEl.value = "";
     }
     else
         alert("Please enter city name");
