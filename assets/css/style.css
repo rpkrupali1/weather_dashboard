@@ -1,0 +1,17 @@
+.root {
+    --primary: #338DFF;
+}
+
+.hero {
+    font-weight: 700;
+    background-color: var(--primary);
+    background-image: linear-gradient(to right,#5233FF,#6B33FF);
+}
+
+#search {
+    background-color: var(--primary);
+}
+
+.bg-dark {
+    background-color: #293933;
+}

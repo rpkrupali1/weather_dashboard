@@ -4,15 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>WeatherDashboard</title>
 </head>
 <body>
     <header class="hero">
-        <h1>Weather Dashboard</h1>
+        <h1 class="text-center text-light mb-4 pb-4">Weather Dashboard</h1>
     </header>
     <main>
-
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <h2 class="px-2">Search for a city:</h2>
+                <div class="container">
+                    <form id="user-form" class="mb-8">
+                        <input type="text" id="cityInput" class="col-12 mb-2 rounded border border-secondary"/>
+                        <button type="submit" id="search" class="text-light col-12 mb-4 rounded border border-secondary">Search</button>
+                    </form>    
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="container">
+                    <div id="todaysforcast" class="border border-secondary mb-4 px-2">
+                        <h2 id="city"></h2>
+                        <p id="temp"></p>
+                        <p id="wind"></p>
+                        <p id="humidity"></p>
+                        <p id="uvindex"></p>
+                    </div>
+                    <div id="5dayforecast">
+                        <h2>5-day forecast:</h2>
+                        <div id="dailyforecast" class="row d-flex justify-content-between"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
