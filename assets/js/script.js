@@ -126,6 +126,7 @@ var display5dayForecast = function(data){
     }
 
     dailyForecastEl.appendChild(forecastRowEl);
+    loadHistory();
 }
 
 //save city information in location storage
@@ -150,6 +151,7 @@ var saveCity = function(city){
 
 // load city data from local storage to search history
 var loadHistory = function(){
+    historyButtonsEl.textContent = "";
     var cityHistory = JSON.parse(window.localStorage.getItem("cities"));
     if(cityHistory){
         for (let i = 0; i < cityHistory.length; i++) {
@@ -195,6 +197,7 @@ var buttonClickHandler = function(event){
     }
 }
 
+//load history for first time
 loadHistory();
 formEl.addEventListener("submit",formSubmitHandler)
 historyButtonsEl.addEventListener("click", buttonClickHandler);
