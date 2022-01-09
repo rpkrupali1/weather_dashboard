@@ -25,7 +25,7 @@ Deployed Application:
 * Data is coming from OpenWeather One Call API
 
 ## Website
-https://rpkrupali1.github.io/weather_dashboard/
+https://rpkrupali1.github.io/wk6_weather_dashboard/
 
 ## Contribution
 Made by Krupali
